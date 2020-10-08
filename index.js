@@ -1,20 +1,17 @@
 #!/usr/bin/env node
 
-const commander = require("commander");
-
-const docs = require("./tasks/docs");
-const blog = require("./tasks/blog");
-const sdks = require("./tasks/sdks");
-const newsletter = require("./tasks/newsletter");
-
+const docs = require("./commands/docs");
+const blog = require("./commands/blog");
+const sdks = require("./commands/sdks");
+const newsletter = require("./commands/newsletter");
 const printHeader = require("./utils/header");
+const cli = require("./utils/cli");
 
 // Configure CLI commands and options
-const cli = new commander.Command();
-docs(cli);
-blog(cli);
-sdks(cli);
-newsletter(cli);
+docs();
+blog();
+sdks();
+newsletter();
 
 // Print header
 printHeader();

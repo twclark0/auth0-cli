@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+const cli = require("../utils/cli");
 
 function prompt() {
     const questions = [{
@@ -21,7 +22,7 @@ async function subscribeToNewsletter() {
     // @todo: Do the actual subscribe
 }
 
-module.exports = (cli) => {
+module.exports = () => {
     cli
         .command("newsletter")
         .description("Subscribe to the Zero Index newsletter.")

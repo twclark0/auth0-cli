@@ -1,6 +1,7 @@
 const opn = require("opn");
+const cli = require("../utils/cli");
 
-module.exports = (cli) => {
+module.exports = () => {
     return cli
         .command("docs")
         .description("Open the documentation")

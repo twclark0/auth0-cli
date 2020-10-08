@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const opn = require("opn");
+const cli = require("../utils/cli");
 
 const sdks = [{
         name: "Single Page Application",
@@ -65,7 +66,7 @@ function openDocs(sdkName) {
     return opn("https://support.auth0.com");
 }
 
-module.exports = (cli) => {
+module.exports = () => {
     return cli
         .command("sdk [sdk]")
         .description("Open the documentation for a specific Auth0 SDK")
