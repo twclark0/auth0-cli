@@ -1,43 +1,23 @@
 #!/usr/bin/env node
 
-const clear = require("clear");
-const opn = require("opn");
-const chalk = require("chalk");
-const figlet = require("figlet");
-const inquirer = require("inquirer");
+const commander = require("commander");
 
-clear();
+const docs = require("./tasks/docs");
+const blog = require("./tasks/blog");
+const sdks = require("./tasks/sdks");
+const newsletter = require("./tasks/newsletter");
 
-console.log(
-  chalk.black(figlet.textSync("Auth0", { horizontalLayout: "full" }))
-);
+const printHeader = require("./utils/header");
 
-function prompt() {
-  const questions = [
-    {
-      name: "support",
-      type: "list",
-      message: "What can we help you with today?",
-      validate: function (value) {
-        if (value.length) {
-          return true;
-        } else {
-          return "Please enter your username or e-mail address.";
-        }
-      },
-      choices: ["support", "react", "angular", "node"],
-      loop: true
-    }
-  ];
-  return inquirer.prompt(questions);
-}
+// Configure CLI commands and options
+const cli = new commander.Command();
+docs(cli);
+blog(cli);
+sdks(cli);
+newsletter(cli);
 
-prompt().then(({ support }) => {
-  if (support === "angular") {
-    opn("https://auth0.com/docs/quickstart/spa/angular");
-  } else if (support === "react") {
-    opn("https://auth0.com/docs/quickstart/spa/react");
-  } else {
-    opn("https://support.auth0.com/");
-  }
-});
+// Print header
+printHeader();
+
+// Start CLI
+cli.parse(process.argv);
